@@ -1,0 +1,86 @@
+*{
+    margin: 0;padding: 0;
+    font-family:'poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+  background-color: #222;  
+}
+.card{
+    width: 90%;
+    max-width: 470px;
+    background :linear-gradient(135deg,#00feba, #5b548a );/*rgba(30, 158, 158, 0.623);*/
+    color:#fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+
+}
+.search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+    border: 0;
+    outline: 0;
+    background:#ebfffc ;
+    color: #555;
+    height: 60px;
+    border-radius: 30px;
+    padding: 10px 25px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+.search button{
+    width: 60px;
+    height: 60px;
+    border: 0;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.search button img{
+    width: 16px;
+}
+.search button :hover{
+    height: 1.4rem;
+    width: 1.4rem;
+}
+.details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-top: 30px;
+}
+.temp{
+    font-size: 80px;
+    font-weight: 500;
+}
+ @mediaquery
+
+.place{
+    font-size: 45px;
+    font-weight: 400;
+}
+.reading{
+    font-size: 25px;
+}
+.weath-condition{
+    display:flex;
+}
+.weath-condition img{
+    width: 50px;
+}
+.written-weath{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10px;
+    text-align: left;
+}
