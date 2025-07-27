@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../com.css_bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../com.js_bootstrap/bootstrap.min.js">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <title>Digital Clock</title>
+
+  <style>
+    .bg-info {
+      background: linear-gradient(90deg,
+          rgba(26, 27, 1, 0.596),
+          rgba(17, 0, 255, 0.523),
+          rgba(207, 205, 170, 0.537));
+    }
+
+    .btn-white {
+      background: linear-gradient(90deg,
+          rgba(26, 27, 1, 0.596),
+          rgba(0, 30, 255, 0.523),
+          /* rgba(207, 205, 170, 0.537)*/
+        );
+    }
+
+    .bg-warn {
+      background: linear-gradient(90deg,
+          rgba(25, 25, 22, 0.523),
+          rgba(96, 91, 240, 0.537));
+    }
+
+    .bg-success {
+      background: linear-gradient(90deg,
+          rgba(25, 25, 22, 0.523),
+          rgba(98, 91, 240, 0.537));
+    }
+
+    .bg-white {
+      background: linear-gradient(90deg,
+          rgba(24, 24, 3, 0.114),
+          rgba(27, 19, 182, 0.105),
+          rgba(182, 172, 240, 0.114));
+      /*overflow: hidden;*/
+      overflow-x: hidden;
+    }
+
+    .bn-col {
+      background: linear-gradient(90deg,
+          rgba(25, 25, 22, 0.523),
+          rgba(98, 91, 240, 0.537));
+    }
+
+    .dist_st {
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .dist_end {
+
+      position: sticky;
+      bottom: 10;
+      z-index: 1000;
+    }
+
+    img,
+    .curv {
+      border-radius: 6px;
+    }
+
+    button {
+      box-shadow: 0px 0px 2px black;
+    }
+
+    .btn-warning {
+      background: linear-gradient(90deg, rgb(65, 65, 65), rgba(67, 92, 156, 0.871));
+    }
+
+    .cat {
+      border-radius: 10%;
+      box-shadow: 0 0 5px rgb(40, 39, 39);
+    }
+
+    .dog {
+      border-radius: 10%;
+      box-shadow: 0 0 5px rgb(52, 43, 74);
+
+    }
+  </style>
+</head>
+
+<body bg-white>
+  <nav class="navbar bg bg-body-tertiary bg-info dist_st p-2">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white">Clock</a>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2 bg-white" type="search" placeholder="City name" aria-label="Search"
+          id="search-box" />
+        <button class="btn btn-white text-secondary" type="search" id="search-btn">Search</button>
+
+        <!-- Example single danger button -->
+        <div class="btn-group dropstart">
+          <button type="button" class="btn btn-white text-secondary ms-2" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="bi bi-three-dots-vertical"></i>
+          </button>
+          <ul class="dropdown-menu bg-white">
+            <li>
+              <a class="dropdown-item text-secondary" href="../DOM/Profile.Html">Profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item text-secondary" href="#">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item text-secondary" href="">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <div>
+
+    <div class="card w-50 m-auto mt-2 bg-info">
+      <div class="card-header"></div>
+      <div class="card-body text-center text-white">
+        <h1>Indian Digital clock</h1>
+        <h3>Asia/Kolkata</h3>
+        <h2 id="date"></h2>
+        <h3 id="time"></h3>
+      </div>
+    </div>
+  </div>
+
+  <div>
+
+    <div class="card w-50 m-auto mt-2 bg-info">
+      <div class="card-header"></div>
+      <div class="card-body text-center text-white">
+        <h1>Timer</h1>
+        <!-- <h3>Asia/Kolkata</h3> -->
+        <!-- <h2 id="date"></h2> -->
+        <input type="text" name="" id="getTime" class="curv">
+        <button class="btn btn-primary" type="submit" id="btnId">Start</button>
+        <!-- <h3 id="countDown"></h3> -->
+        <h3 id="msgBox"><span class="" id="minSec">00 :</span><span id="secondSec"> 00</span></h3>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div>
+    <!-- Stop watch -->
+    <div class="card w-50 m-auto mt-2 bg-info">
+      <div class="card-header"></div>
+      <div class="card-body text-center text-white">
+        <h1 class="mb-3">Stop Watch</h1>
+        <!-- <input type="text" name="" id="getTime" class="curv"> -->
+        <button class="btn btn-outline-primary text-white" type="submit" id="watchSt">Start</button>
+        <button class="btn btn-outline-primary ms-5 text-white" type="submit" id="watchreset">Reset</button>
+        <button class="btn btn-outline-primary ms-5 text-white" type="submit" id="watchStop">Stop</button>
+        <!-- <h3 id="countDown"></h3> -->
+        <h3 id="msgBox" class="mt-4"><span class="" id="hour">00 :</span><span class="" id="minutes"> 00 :</span><span
+            id="second"> 00</span></h3>
+      </div>
+
+
+    </div>
+  </div>
+  </div>
+  <!-- Script here -->
+
+  <script>
+
+    /* Clock */
+    let curDate = document.querySelector("#date")
+    let curTime = document.querySelector("#time")
+    function timer() {
+      let date = new Date();
+      let currTime = date.toLocaleTimeString()
+      let currDate = date.toLocaleDateString()
+      curDate.textContent = currDate;
+      curTime.textContent = currTime;
+    }
+    timer()
+    //setInterval(timer,1000);
+
+    /* Timer */
+
+    let timerTime = document.querySelector("#secondSec");
+    let gettime = document.querySelector("#getTime");
+    let startBtn = document.querySelector("#btnId");
+    //let minbox=document.querySelector("#minSec");
+    let endTime = 0;
+    startBtn.addEventListener('click', () => {
+      endTime = gettime.value;
+      /* if(endTime>=60){
+         let min=Math.trunc(endTime/60);
+         if(min!=1){
+         minbox.textContent=`${min-1} : `;
+         }
+         //endTime=(endTime%60);
+
+       }*/
+      if (endTime <= 60) {
+        //timerTime.textContent=endTime;
+        //let count=60;
+        let msg = setInterval(() => {
+          //console.log(endTime--)
+          // count--;
+          timerTime.textContent = `${endTime--}`;
+          // if(count==0)
+
+          if (endTime == 0) {
+            clearInterval(msg)
+            window.alert("time over");
+          }
+
+        }, 1000);
+      }
+      else {
+        alert("Enter less than 60 seconds")
+      }
+    });
+
+    /* Stop Watch */
+
+    let st = document.querySelector("#watchSt");
+    let Reset = document.querySelector("#watchreset");
+    let stopbutton = document.querySelector("#watchStop");
+    let sTime = document.querySelector("#second");
+    let minuteTime = document.querySelector("#minutes");
+    let hrTime = document.querySelector("#hour");
+    let msg2;
+    st.addEventListener('click', () => {
+      let count = 1
+      let secondCount = 1;
+      let minCount = 1;
+      let hrCount = 1;
+      msg2 = setInterval(() => {
+        count++;
+        if (count == 100) {
+
+          if (secondCount < 10) {
+            sTime.textContent = ` 0${secondCount++}`;
+          }
+          else {
+            sTime.textContent = ` ${secondCount++}`;
+
+          }
+          count = 1
+          if (secondCount == 60) {
+            setTimeout(()=>{
+            if (minCount < 10) {
+              minuteTime.textContent = `0${minCount++} :`;
+            }
+            else {
+              minuteTime.textContent = `${minCount++} :`;
+
+            }
+          },1000);
+            secondCount = 0;
+            if (hrCount == 60) {
+              hrTime.textContent = `${hrCount++} :`;
+              minCount = 1;
+            }
+          }
+
+        }
+      }, 10);
+
+    })
+    stopbutton.addEventListener('click', () => {
+      clearInterval(msg2);
+    });
+    Reset.addEventListener('click', () => {
+      clearInterval(msg2);
+      sTime.textContent = " 00"
+      minuteTime.textContent = " 00 :"
+      hrTime.textContent = "00 :"
+    })
+
+
+  </script>
+</body>
+
+</html>
